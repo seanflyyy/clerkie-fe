@@ -29,7 +29,11 @@ export default function FilterDropdown(props: Props) {
         <div className={styles.clearAllPosition}>
           <ClearAllButton
             isActive={isCloseFriends || isSuperCloseFriends}
-            onPress={props.onClearAll}
+            onPress={() => {
+              props.onClearAll()
+              setCloseFriends(false);
+              setSuperCloseFriends(false);
+            }}
           />
         </div>
         <div className={styles.filterText}>
