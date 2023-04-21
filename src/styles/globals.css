@@ -107,3 +107,30 @@ a {
         color-scheme: dark;
     }
 }
+
+
+.animatePulse {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.75;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.linearGradientRight {
+    background: linear-gradient(to right, var(--gray-400), #FFFFFF);
+}
+
+.linearGradientLeft {
+    background: linear-gradient(to left, var(--gray-400), #FFFFFF);
+}
