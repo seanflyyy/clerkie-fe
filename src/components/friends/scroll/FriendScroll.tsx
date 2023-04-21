@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import FriendScrollElement from './FriendScrollElement';
 import { Friend } from '@/common/types';
 import styles from '@/styles/Friends.module.css';
 import { fetchFriends } from '@/pages/api/friends';
+import FriendRow from './FriendRow';
 
 export default function FriendScroll() {
     const [friends, setFriends] = useState<Friend[]>([]);
@@ -45,7 +45,7 @@ export default function FriendScroll() {
     return (
         <div className={styles.list}>
             {friends.map((friend: Friend, index: number) => (
-                <FriendScrollElement {...friend} key={index} />
+                <FriendRow {...friend} key={index} />
             ))}
             <div ref={ref}></div>
         </div >

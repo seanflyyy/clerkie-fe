@@ -55,3 +55,32 @@
     align-items: center;
     flex-direction: row;
 }
+
+.filterToggle {
+    border-radius: 30px;
+    border: 1px solid var(--gray-600);
+    padding: 8.5px;
+    width: 59px;
+    height: 37px;
+    justify-content: center;
+    display: flex;
+}
+
+.toggleActive {
+    background-color: var(--gray-1000);
+}
+
+.clearAll {
+    color: var(--gray-400);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.filterContainer {
+    margin-top: 46px;
+    margin-bottom: 25px;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}

@@ -3,7 +3,7 @@ import { Friend, FriendState } from '@/common/types';
 import Image from 'next/image';
 
 
-export default function FriendScrollElement(friend: Friend) {
+export default function FriendRow(friend: Friend) {
     const convertStateToString = (state: FriendState) => {
         switch (state) {
             case FriendState.CLOSE_FRIENDS:
