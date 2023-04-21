@@ -1,0 +1,57 @@
+.list {
+    height: 100%;
+    overflow: auto;
+}
+
+.card {
+    width: 1050px;
+    height: 114px;
+    /* background-color: purple; */
+    border: 1px solid var(--gray-400);
+    padding-top: 33px;
+    padding-bottom: 33px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.friendName {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    padding-right: 10px;
+}
+
+
+.friendState {
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 21px;
+}
+
+.closeFriends {
+    background-color: var(--theme-light);
+    color: var(--theme-color);
+}
+
+.superCloseFriends {
+    color: var(--positive);
+    background-color: var(--positive-light);
+}
+
+.contactDetails {
+    color: var(--gray-600);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.bottomSection {
+    padding-top: 14px;
+    gap: 7px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
