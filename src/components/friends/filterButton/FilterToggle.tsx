@@ -1,15 +1,20 @@
 import Image from "next/image";
 import { useState } from "react";
 import styles from "@/styles/Friends.module.css";
+import ClearAllButton from "./ClearAllButton";
 
-export default function FilterToggle({ toggleState, onPress }
-    : {
-        toggleState: boolean;
-        onPress: () => void
-    }) {
+interface Props {
+    isFilterCloseFriends: boolean;
+    isFilterSuperCloseFriends: boolean;
+    onPressClearAll: () => void;
+    toggleState: boolean;
+    onPress: () => void;
+}
+
+export default function FilterToggle(props: Props) {
 
     const renderFilterToggle = () => {
-        if (toggleState) {
+        if (props.toggleState) {
             return `${styles.toggleActive} ${styles.filterToggle}`;
         } else {
             return styles.filterToggle;
@@ -19,10 +24,10 @@ export default function FilterToggle({ toggleState, onPress }
     return (
         <div className={styles.filterToggleContainer}>
             <div className={renderFilterToggle()} onClick={() => {
-                onPress();
+                props.onPress();
             }}>
                 <Image
-                    src={toggleState ? "/friends/FilterActive.svg" : "/friends/Filter.svg"}
+                    src={props.toggleState ? "/friends/FilterActive.svg" : "/friends/Filter.svg"}
                     alt="Filter"
                     width={19}
                     height={20}
@@ -36,9 +41,10 @@ export default function FilterToggle({ toggleState, onPress }
                     height={28}
                 />
             </span>
-            <span className={styles.clearAll}>
-                Clear all
-            </span>
+            <ClearAllButton
+                isActive={props.isFilterCloseFriends || props.isFilterSuperCloseFriends}
+                onPress={props.onPressClearAll}
+            />
         </div>
     )
 }

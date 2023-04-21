@@ -3,8 +3,12 @@ import { Friend } from '@/common/types';
 import styles from '@/styles/Friends.module.css';
 import { fetchFriends } from '@/pages/api/friends';
 import FriendRow from './FriendRow';
+import { FriendState } from '@/common/types';
 
-export default function FriendScroll() {
+export default function FriendScroll({ filterCloseFriends, filterSuperCloseFriends }: {
+    filterCloseFriends: boolean;
+    filterSuperCloseFriends: boolean;
+}) {
     const [friends, setFriends] = useState<Friend[]>([]);
     const [isFetching, setIsFetching] = useState(false);
     const ref = useRef(null);
@@ -44,9 +48,21 @@ export default function FriendScroll() {
 
     return (
         <div className={styles.list}>
-            {friends.map((friend: Friend, index: number) => (
-                <FriendRow {...friend} key={index} />
-            ))}
+            {friends.filter((friend: Friend) => {
+                if (filterCloseFriends && filterSuperCloseFriends) {
+                    return friend.state == FriendState.CLOSE_FRIENDS
+                        || friend.state == FriendState.SUPER_CLOSE_FRIENDS;
+                } else if (filterCloseFriends) {
+                    return friend.state == FriendState.CLOSE_FRIENDS;
+                } else if (filterSuperCloseFriends) {
+                    return friend.state == FriendState.SUPER_CLOSE_FRIENDS;
+                } else {
+                    return true;
+                }
+            })
+                .map((friend: Friend, index: number) => (
+                    <FriendRow {...friend} key={index} />
+                ))}
             <div ref={ref}></div>
         </div >
     );

@@ -1,14 +1,43 @@
 import styles from '@/styles/Friends.module.css';
 import Image from 'next/image';
 import FilterRow from './FilterRow';
+import { useState } from 'react';
+import ClearAllButton from './ClearAllButton';
 
-export default function FilterDropdown({ onPress }: { onPress: () => void }) {
+interface Props {
+    isFilterCloseFriends: boolean;
+    isFilterSuperCloseFriends: boolean;
+    onPressCloseButton: () => void
+    onPressCloseFriends: (state: boolean) => void
+    onPressSuperCloseFriends: (state: boolean) => void
+}
+
+export default function FilterDropdown(props: Props) {
+    console.log("in filterdropdown", props.isFilterCloseFriends, props.isFilterSuperCloseFriends);
+
+    const [isCloseFriends, setCloseFriends] = useState(props.isFilterCloseFriends);
+    const [isSuperCloseFriends, setSuperCloseFriends] = useState(props.isFilterSuperCloseFriends);
+
+    const onApply = () => {
+        props.onPressCloseFriends(isCloseFriends);
+        props.onPressSuperCloseFriends(isSuperCloseFriends);
+        props.onPressCloseButton();
+    }
+
     return (
         <div className={styles.filterDropDownContainer}>
             <div className={styles.topBar}>
-                <button className={` ${styles.clearAll} ${styles.clearAllPosition} ${styles.button}`}>
-                    Clear all
-                </button>
+                <div className={styles.clearAllPosition}>
+                    <ClearAllButton
+                        isActive={isCloseFriends || isSuperCloseFriends}
+                        onPress={
+                            () => {
+                                setCloseFriends(false);
+                                setSuperCloseFriends(false);
+                            }
+                        }
+                    />
+                </div>
                 <div className={styles.filterText}>
                     Filter
                 </div>
@@ -18,7 +47,7 @@ export default function FilterDropdown({ onPress }: { onPress: () => void }) {
                         alt="CloseButton"
                         height={17}
                         width={17}
-                        onClick={onPress}
+                        onClick={props.onPressCloseButton}
                     />
                 </button>
             </div>
@@ -26,11 +55,11 @@ export default function FilterDropdown({ onPress }: { onPress: () => void }) {
                 <div className={styles.friendStatus}>
                     Friend Status
                 </div>
-                <FilterRow text={"Close Friends"} onPress={() => { }} />
-                <FilterRow text={"Super Close Friends"} onPress={() => { }} />
+                <FilterRow text={"Close Friends"} state={isCloseFriends} onPress={() => setCloseFriends(!isCloseFriends)} />
+                <FilterRow text={"Super Close Friends"} state={isSuperCloseFriends} onPress={() => { setSuperCloseFriends(!isSuperCloseFriends) }} />
             </div>
             <div className={styles.buttonPosition}>
-                <button className={styles.applyButton}>
+                <button className={styles.applyButton} onClick={onApply}>
                     Apply
                 </button>
             </div>
