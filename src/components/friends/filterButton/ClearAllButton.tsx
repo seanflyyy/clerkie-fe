@@ -1,24 +1,24 @@
 import styles from "@/styles/Friends.module.css";
 
 export default function ClearAllButton({
-    isActive,
-    onPress
+  isActive,
+  onPress
 }: {
-    isActive: boolean;
-    onPress: () => void;
+  isActive: boolean;
+  onPress: () => void;
 }) {
-    const renderClearAllStyle = () => {
-        if (isActive) {
-            return `${styles.clearAllActive} ${styles.button}`
-        }
-        return `${styles.clearAll} ${styles.button}`
+  const renderClearAllStyle = () => {
+    if (isActive) {
+      return `${styles.clearAllActive} ${styles.button}`
     }
+    return `${styles.clearAll} ${styles.button}`
+  }
 
-    return (
-        <button className={renderClearAllStyle()} onClick={onPress}>
-            Clear all
-        </button>
-    )
+  return (
+    <button className={renderClearAllStyle()} onClick={onPress}>
+      Clear all
+    </button>
+  )
 
 
 }
