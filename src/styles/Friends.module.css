@@ -35,11 +35,15 @@
 .closeFriends {
     background-color: var(--theme-light);
     color: var(--theme-color);
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .superCloseFriends {
     color: var(--positive);
     background-color: var(--positive-light);
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .contactDetails {
