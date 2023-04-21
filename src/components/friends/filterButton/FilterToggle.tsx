@@ -2,11 +2,14 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "@/styles/Friends.module.css";
 
-export default function FilterToggle() {
-    const [isToggle, setIsToggle] = useState(false);
+export default function FilterToggle({ toggleState, onPress }
+    : {
+        toggleState: boolean;
+        onPress: () => void
+    }) {
 
     const renderFilterToggle = () => {
-        if (!isToggle) {
+        if (toggleState) {
             return `${styles.toggleActive} ${styles.filterToggle}`;
         } else {
             return styles.filterToggle;
@@ -14,10 +17,12 @@ export default function FilterToggle() {
     }
 
     return (
-        <div className={styles.filterContainer}>
-            <div className={renderFilterToggle()} onClick={() => setIsToggle(!isToggle)}>
+        <div className={styles.filterToggleContainer}>
+            <div className={renderFilterToggle()} onClick={() => {
+                onPress();
+            }}>
                 <Image
-                    src={isToggle ? "/friends/Filter.svg" : "/friends/FilterActive.svg"}
+                    src={toggleState ? "/friends/FilterActive.svg" : "/friends/Filter.svg"}
                     alt="Filter"
                     width={19}
                     height={20}
