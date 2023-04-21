@@ -63,14 +63,19 @@
 .filterToggle {
     border-radius: 30px;
     border: 1px solid var(--gray-600);
-    padding: 8.5px;
-    width: 59px;
-    height: 37px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8.5px;
+    padding-bottom: 8.5px;
+    /* width: 59px; */
+    gap: 10px;
+    /* height: 37px; */
     justify-content: center;
     display: flex;
 }
 
 .toggleActive {
+    color: white;
     background-color: var(--gray-1000);
     border: 1px solid var(--gray-1000);
 

@@ -7,14 +7,13 @@ import ClearAllButton from './ClearAllButton';
 interface Props {
     isFilterCloseFriends: boolean;
     isFilterSuperCloseFriends: boolean;
+    onClearAll: () => void;
     onPressCloseButton: () => void
     onPressCloseFriends: (state: boolean) => void
     onPressSuperCloseFriends: (state: boolean) => void
 }
 
 export default function FilterDropdown(props: Props) {
-    console.log("in filterdropdown", props.isFilterCloseFriends, props.isFilterSuperCloseFriends);
-
     const [isCloseFriends, setCloseFriends] = useState(props.isFilterCloseFriends);
     const [isSuperCloseFriends, setSuperCloseFriends] = useState(props.isFilterSuperCloseFriends);
 
@@ -30,12 +29,7 @@ export default function FilterDropdown(props: Props) {
                 <div className={styles.clearAllPosition}>
                     <ClearAllButton
                         isActive={isCloseFriends || isSuperCloseFriends}
-                        onPress={
-                            () => {
-                                setCloseFriends(false);
-                                setSuperCloseFriends(false);
-                            }
-                        }
+                        onPress={props.onClearAll}
                     />
                 </div>
                 <div className={styles.filterText}>
